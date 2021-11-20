@@ -57,7 +57,7 @@ function checkWinner() {
 		player2score.classList.add("loser");
 		isGameOver = true;
 	}
-	
+
 	if (j == winningScore) {
 		alert("Winner is Player 2");
 		const player1score = document.querySelector("#player1Score");
