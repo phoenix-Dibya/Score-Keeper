@@ -44,8 +44,8 @@ function reset() {
 	const player2score = document.querySelector("#player2Score");
 	player1score.innerText = i;
 	player2score.innerText = j;
-	player1score.classList.remove("winner","loser");
-	player2score.classList.remove("loser","winner");
+	player1score.classList.remove("winner", "loser");
+	player2score.classList.remove("loser", "winner");
 }
 
 function checkWinner() {
@@ -57,6 +57,7 @@ function checkWinner() {
 		player2score.classList.add("loser");
 		isGameOver = true;
 	}
+	//hello
 	if (j == winningScore) {
 		alert("Winner is Player 2");
 		const player1score = document.querySelector("#player1Score");
