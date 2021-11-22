@@ -1,10 +1,12 @@
 p1 = {
+	name: "Player 1",
 	score: 0,
 	button: document.querySelector("#player1"),
 	display: document.querySelector("#player1Score"),
 };
 
 p2 = {
+	name: "Player 2",
 	score: 0,
 	button: document.querySelector("#player2"),
 	display: document.querySelector("#player2Score"),
@@ -54,7 +56,7 @@ function reset() {
 
 function checkWinner(player, opponent) {
 	if (player.score == winningScore) {
-		alert("Winner is Player 1");
+		alert(`Winner is ${player.name}`);
 
 		player.display.classList.add("winner");
 		opponent.display.classList.add("loser");
