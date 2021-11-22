@@ -1,33 +1,38 @@
-const btnadd = document.querySelector("#add");
-const btnsub = document.querySelector("#substract");
+p1 = {
+	score: 0,
+	button: document.querySelector("#player1"),
+	display: document.querySelector("#player1Score"),
+};
+
+p2 = {
+	score: 0,
+	button: document.querySelector("#player2"),
+	display: document.querySelector("#player2Score"),
+};
+
 const resetButton = document.querySelector("#reset");
 const playtillScore = document.querySelector("#playtill");
-var i = 0;
-var j = 0;
+
 var winningScore = 3;
 let isGameOver = false;
-btnadd.addEventListener("click", () => {
-	const head = document.querySelector("#player1Score");
+
+function updateScore(player, opponent) {
 	if (!isGameOver) {
-		if (i != winningScore) {
-			i++;
-			head.innerText = i;
+		if (player.score != winningScore) {
+			player.score++;
+			player.display.innerText = player.score;
 		} else {
-			checkWinner();
+			checkWinner(player, opponent);
 		}
 	}
+}
+
+p1.button.addEventListener("click", () => {
+	updateScore(p1, p2);
 });
 
-btnsub.addEventListener("click", () => {
-	const head = document.querySelector("#player2Score");
-	if (!isGameOver) {
-		if (j != winningScore) {
-			j++;
-			head.innerText = j;
-		} else {
-			checkWinner();
-		}
-	}
+p2.button.addEventListener("click", () => {
+	updateScore(p2, p1);
 });
 
 playtillScore.addEventListener("change", function (e) {
@@ -38,32 +43,21 @@ playtillScore.addEventListener("change", function (e) {
 resetButton.addEventListener("click", reset);
 
 function reset() {
-	(i = 0), (j = 0);
+	(p1.score = 0), (p2.score = 0);
 	isGameOver = false;
-	const player1score = document.querySelector("#player1Score");
-	const player2score = document.querySelector("#player2Score");
-	player1score.innerText = i;
-	player2score.innerText = j;
-	player1score.classList.remove("winner", "loser");
-	player2score.classList.remove("loser", "winner");
+
+	p1.display.innerText = p1.score;
+	p2.display.innerText = p2.score;
+	p1.display.classList.remove("winner", "loser");
+	p2.display.classList.remove("loser", "winner");
 }
 
-function checkWinner() {
-	if (i == winningScore) {
+function checkWinner(player, opponent) {
+	if (player.score == winningScore) {
 		alert("Winner is Player 1");
-		const player1score = document.querySelector("#player1Score");
-		const player2score = document.querySelector("#player2Score");
-		player1score.classList.add("winner");
-		player2score.classList.add("loser");
-		isGameOver = true;
-	}
 
-	if (j == winningScore) {
-		alert("Winner is Player 2");
-		const player1score = document.querySelector("#player1Score");
-		const player2score = document.querySelector("#player2Score");
-		player2score.classList.add("winner");
-		player1score.classList.add("loser");
+		player.display.classList.add("winner");
+		opponent.display.classList.add("loser");
 		isGameOver = true;
 	}
 }
